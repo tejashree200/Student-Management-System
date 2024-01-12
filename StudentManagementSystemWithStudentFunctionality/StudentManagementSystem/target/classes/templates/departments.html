@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class = "container">
+    <div class = "row">
+        <h1>List Departments</h1>
+    </div>
+
+    <div class = "row">
+        <div class = "col-Lg-3">
+            <a th:href = "@{/departments/new}" class = "btn btn-primary btn-sm mb-3">Add Department</a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Department Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "dept: ${departments}">
+            <td th:text = "${dept.name}"></td>
+            <td>
+                <a th:href = "@{/departments/edit/{id}(id=${dept.id})}"
+                   class = "btn btn-primary">Update
+                </a>
+
+                <a th:href = "@{/departments/{id}(id=${dept.id})}"
+                   class = "btn btn-danger">Delete
+                </a>
+
+                <a th:href = "@{'/courses/add?id='+${dept.id}}"
+                   class = "btn btn-danger">Add a Course
+                </a>
+
+                <a th:href = "@{/departments/courses/{id}(id=${dept.id})}"
+                   class = "btn btn-danger">View Department
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

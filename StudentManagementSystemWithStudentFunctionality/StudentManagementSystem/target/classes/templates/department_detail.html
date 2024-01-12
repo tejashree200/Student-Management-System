@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <title>Student Management System</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class = "container">
+    <p class="h1" th:text="'Department of '+${dept.name}" />
+    <div class = "row">
+        <hr>
+        <h3>Course Details</h3>
+    </div>
+
+    <div class = "row">
+        <div class = "col-Lg-3">
+            <a th:href = "@{/departments}" class = "btn btn-primary btn-sm mb-3">Back to Department List</a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Course Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "course: ${courses}">
+            <td th:text = "${course.name}"></td>
+            <td>
+                <a th:href = "@{/courses/edit/{id}(id=${course.id})}"
+                   class = "btn btn-primary">Update
+                </a>
+
+                <a th:href = "@{/courses/{id}(id=${course.id})}"
+                   class = "btn btn-danger">Delete
+                </a>
+
+                <a th:href = "@{'/students/addNew?id='+${course.id}}"
+                   class = "btn btn-danger">Add new Student
+                </a>
+
+                <a th:href = "@{'/students/addExisting?id='+${course.id}}"
+                   class = "btn btn-danger">Add existing Student
+                </a>
+
+                <a th:href = "@{/courses/students/{id}(id=${course.id})}"
+                   class = "btn btn-danger">View Course
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class = "row">
+        <div class = "col-Lg-3">
+            <a th:href = "@{'/courses/add?id='+${dept.id}}"
+               class = "btn btn-danger">Add a Course
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
